@@ -14,7 +14,7 @@ int  main() {
   
   system("clear");
   system("./display.sh");
-  tab_compare();
+  menu();
   //menu avec regles, un joli affichage ect...
   return(0);
 }
