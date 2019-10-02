@@ -11,7 +11,10 @@ version: 0.1
 #include <stdio.h>
 
 int  main() {
+  
+  system("clear");
   system("./display.sh");
+  tab_compare();
   //menu avec regles, un joli affichage ect...
   return(0);
 }

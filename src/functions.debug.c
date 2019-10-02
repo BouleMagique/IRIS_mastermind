@@ -1,22 +1,17 @@
 #include <stdio.h>
 #include <unistd.h>
 
-int comb_select(int tab[], char *str){
+int comb_select(int tab[]){
   //fonction qui permet a J1 de choisir le code
   //declaration des variables
   int i;
     
   i = 0;
   
-  printf("%s\n", str);
+  printf("choisir 4 chiffres allant de 1 à 4\n");
   while(i < 4) {
     printf("entrez le %deme nombre\n", i+1);
     scanf("%d",&tab[i]);
-    if (tab[i] < 1 || tab[i] > 4)
-    {
-      printf("Entrez un nombre compris entre 1 et 4\n");
-      i--;
-    }
     i++;
   }
   printf("la combinaison est: [%d][%d][%d][%d]\n",tab[0],tab[1],tab[2],tab[3]);
@@ -87,7 +82,7 @@ int tab_compare(){
 
   turns = 5; //peux etre recoder plus tard pour etre dynamique, mais definit le nombre de tour que j2 a poour trouver la comb
 
-  comb_select(soluce, "Choisissez 4 nombre allant de 1 à 4");
+  comb_select(soluce);
   for (count = 0; count < turns; ++count)
   {
     int tabhint[4] = {0};
@@ -95,17 +90,24 @@ int tab_compare(){
     ur_turn(tabj2);
     for (int i = 0; i < 4; ++i)
     {
+      
       for (int j = 0; j < 4; ++j)
       {
         if (tabj2[i] == soluce[j])
         {
+          printf("tab[%d] existe\n", i);
           tabhint[i] = 2;
           break;
         }
       }
+
       if (tabj2[i] == soluce[i])
+      {
+        printf("tab[%d] est a la bonne place\n", i);
         tabhint[i] = 1;
+      }
     }
+    printf("[%d][%d][%d][%d]\n",tabhint[0],tabhint[1],tabhint[2],tabhint[3]);
     if (display_hint(reponse, tabhint, count) == 1)
     {
     system("./YouWin.sh");
@@ -114,5 +116,5 @@ int tab_compare(){
     while(getchar() != '\n');
     getchar(); 
   }
-  return(0);
+  return(0/*0 ou 1 en fonction de si la combinaison est ok ou pas*/);
 }
