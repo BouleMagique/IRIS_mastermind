@@ -1,6 +1,7 @@
 # Mastermind en C
 
 A simple C based mastermind made as a school project for IRIS
+>(Might not be portable for Windows)
 
 ## Usage
 
